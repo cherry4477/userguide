@@ -749,5 +749,10 @@ $ oc logs --version=1 dc <deployment_config>
  SAAS_USERNAME=<saas_username>
 
  SAAS_PASSPHRASE=<saas_passphrase>
+ 
+#  镜像仓库的使用
+1 使用各自namespace的内置镜像仓库： 使用oc whoami -t 获取登录的密码，docker login镜像仓库后，进行pull/push镜像操作 
+2 使用私有镜像仓库registry.dataos.io, 使用oc secrets new-dockercfg dataos --docker-server=registry.dataos.io --docker-username=XXX --docker-password=XXX --docker-email=XXX创建secret，之后使用oc secrets add serviceaccount/default secrets/dataos --for=pull将secret加入serviceaccount，再进行镜像的pull/push操作
+ 
 
 
